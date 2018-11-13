@@ -1,0 +1,196 @@
+
+<div class="container">
+  <h1>Add User</h1>
+  <hr>
+
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-3">
+      <div class="text-center">
+        <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        
+        <input type="file" class="form-control">
+      </div>
+    </div>
+    
+    <!-- edit form column -->
+    <div class="col-md-9 personal-info">
+ 
+        <form [formGroup]="AddUserForm" (ngSubmit)="onSubmit(AddUserForm.value)"  >
+        <div formGroupName="userDetails">
+            <div class="form-group">
+                <h3>Personal info</h3>
+              <label class="col-lg-3 control-label">First name:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text"  formControlName="FirstName">
+                <div class="text-danger" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched)">
+                    First Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Last name:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text"   formControlName="lastName">
+                <div class="text-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    Last Name is required
+                </div>
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Email:</label>
+              <div class="col-lg-8">
+                <input class="form-control" type="text"   formControlName ="email">
+                <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">Email is required</div>
+                <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">Email must be a valid email address</div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Date of Birth:</label>
+              <div class="col-lg-8">
+                <input class="form-control" formControlName="birth" type="date" > 
+                <div class="text-danger" *ngIf="birth.invalid && (birth.dirty || birth.touched)">
+                    Birth Date is required
+                </div>
+              </div>
+            </div>
+    
+            <div class="form-group">
+                <label class="center-block">Gender:</label>
+                <div>
+                    <input type="radio" name="gender" value='Male' formControlName="gender" checked="checked">Male
+                    <input type="radio" name='gender' value='Female' formControlName="gender" >Female
+                
+                </div>
+            </div>  
+
+              
+          
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Website</label>
+                <div class="col-lg-8">
+                  <input class="form-control" type="text"   formControlName ="website">
+                  <div class="text-danger" *ngIf="website.invalid && (website.dirty || website.touched)">
+                      This is required
+                  </div>
+                </div>
+              </div>
+    
+            <!-- Address-->
+            <div formGroupName="address">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-lg-3 control-label">Street</label>
+                        <input type="text" class="form-control" formControlName="street">
+                        <div class="text-danger" *ngIf="street.invalid && (street.dirty || street.touched)">
+                            This is required
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-lg-3 control-label">Suite</label>
+                        <input type="text" class="form-control" formControlName="suite">
+                        <div class="text-danger" *ngIf="suite.invalid && (suite.dirty || suite.touched)">
+                            This is required
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-lg-3 control-label">City</label>
+                        <input class="form-control" type="text"   formControlName ="city">
+                        <div class="text-danger" *ngIf="city.invalid && (city.dirty || city.touched)">
+                            This is required
+                        </div>
+                    </div>
+                </div>
+    
+                
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-lg-3 control-label">Zipcode</label>
+                        <input class="form-control" type="text"   formControlName ="zipCode">
+                        <div class="text-danger" *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
+                            This is required
+                        </div>
+                    </div>
+                </div>
+    
+                <div formGroupName="geoLoc" >
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-lg-3 control-label">Longitude</label>
+                        <input class="form-control" type="text"   formControlName ="lat">
+                        <div class="text-danger" *ngIf="lat.invalid && (lat.dirty || lat.touched)">
+                            This is required
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-lg-3 control-label">Longitude</label>
+                        <input class="form-control" type="text"   formControlName ="lng">
+                        <div class="text-danger" *ngIf="lng.invalid && (lng.dirty || lng.touched)">
+                            This is required
+                        </div>
+                    </div>
+                </div>
+            </div><!-- geoLoc --> 
+           
+            </div> <!-- Address --> 
+             
+            </div> <!--userDetails -->
+
+           
+        <div class="form-group">
+           
+          <label class="col-md-3 control-label">Username:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text"  formControlName = "userName">
+            <div class="text-danger" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                This is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password"  formControlName = "password">
+            <div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                This is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-8">
+            <input class="form-control" type="password"  formControlName = "Cpassword">
+            <div class="text-danger" *ngIf="Cpassword.invalid && (Cpassword.dirty || Cpassword.touched)">
+                This is required
+            </div>
+          </div>
+        </div>
+       
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+              <button [disabled]="AddUserForm.invalid" class="btn btn-primary" style="float:right">Submit</button> &nbsp; &nbsp;
+            <span></span>
+            <input type="reset" class="btn btn-default" value="Cancel">
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+</div>
+
+<hr>
+<pre>{{AddUserForm.value | json}}</pre>

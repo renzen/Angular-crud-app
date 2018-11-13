@@ -1,0 +1,21 @@
+<!-- <nav class="my-2 my-md-0 mr-md-3">
+    <ul>
+      <li>
+        <a routerLink="" [class.activated]="currentUrl == '/'">
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="posts" [class.activated]="currentUrl == '/posts'">
+          Blog
+        </a>
+      </li>
+    </ul>
+  </nav> -->
+
+  <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark"  routerLink="" [class.activated]="currentUrl == '/'">Dashboard</a>
+      <a class="p-2 text-dark"  routerLink="posts" [class.activated]="currentUrl == '/posts'">Blog</a>
+      <a class="p-2 text-dark" routerLink="support" [class.activated]="currentUrl == '/support'">Support</a>
+      <a class="p-2 text-dark" routerLink="pricing" [class.activated]="currentUrl == '/pricing'">Pricing</a>
+  </nav>

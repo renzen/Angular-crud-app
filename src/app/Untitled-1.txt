@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: 'app.component.html',
+})
+
+export class AppComponent implements OnInit {
+    public usersForm: FormGroup;
+
+    constructor(private _fb: FormBuilder) { }
+
+    ngOnInit() {
+        this.usersForm = this._fb.group({
+            userName: [''],
+            password: [''],
+            active: [''],
+            userDetails: this.initDetails()
+            
+        });
+    }
+
+      initDetails(){
+        return this._fb.group({
+      firstName: [''],
+      lastName: [''],
+      email: [''],
+      gender: [''],
+      birth: [''],
+      phone: [''],
+      address: this.initAddress(),
+      });
+      }
+          
+      initAddress() {
+              return this._fb.group({
+                    street: ['', Validators.required],
+                    suite: ['', Validators.required],
+                    city: ['', Validators.required],
+                    zipCode: ['', Validators.required],
+                  geoLoc: this.initGeo()
+                  });
+          }
+
+      initGeo() {
+            return this._fb.group({
+              lat: ['', Validators.required],
+              lng: ['', Validators.required],
+              
+            })
+          }
+          
+          
+      }

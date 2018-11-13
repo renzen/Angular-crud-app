@@ -1,0 +1,158 @@
+
+
+
+<div class="container">
+	<h1>Edit Profile</h1>
+	<hr>
+		<div class="row">
+			<!-- left column -->
+			<div class="col-md-3">
+				<div class="text-center">
+					<img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+						<h6>Upload a different photo...</h6>
+						<input type="file" class="form-control">
+						</div>
+					</div>
+					<!-- edit form column -->
+					<div class="col-md-9 personal-info">
+						<form [formGroup]="usersForm" (ngSubmit)="updateUser(usersForm.value)" >
+							<!-- {{ usersForm | json}} -->
+							<div formGroupName="userDetails">
+								<div class="form-group">
+									<h3>Personal info</h3>
+									<label class="col-lg-3 control-label">First name:</label>
+									<div class="col-lg-8">
+										<input class="form-control" formControlName="firstName">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-3 control-label">Last name:</label>
+										<div class="col-lg-8">
+											<input class="form-control" type="text" value=""  formControlName="lastName">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-lg-3 control-label">Email:</label>
+											<div class="col-lg-8">
+												<input class="form-control" type="text" value=""  formControlName ="email">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-lg-3 control-label">Date of Birth:</label>
+												<div class="col-lg-8">
+													<input class="form-control" type="text" value=""  formControlName ="birth">
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-3 control-label">Gender:</label>
+													<div class="col-lg-8">
+														<div class="ui-select">
+															<div class="radio">
+																<label>
+																	<input type="radio" name="gender"  formControlName="gender" value=1 >Male
+                    
+																	</label>
+																</div>
+																<div class="radio">
+																	<label>
+																		<input type="radio" name="gender"  formControlName="gender" value=0>Female
+                    
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-lg-3 control-label">Website</label>
+															<div class="col-lg-8">
+																<input class="form-control" type="text" value=""  formControlName ="website">
+																</div>
+															</div>
+															<!-- Address-->
+															<div formGroupName="address">
+																<!-- <div *ngFor="let address of usersForm.controls['address'].controls; let i=index" class="panel panel-default"><a *ngIf="usersForm.controls['address'].controls.length > 1" (click)="removeAddress(i)" style="cursor: default; float: right">
+                    X 
+                  </a></div> -->
+																<!-- <div class="panel-body" [formGroupName]="i" class="col-md-12 border">    -->
+																<!-- <div class="row"><div formArrayName="address" *ngFor="let number of usersForm.controls['address'].controls[i].controls.address.controls; let j=index" class="col-md-6"><div [formGroupName]="j"><div class="form-group" style="padding-right:0px"><label>Number</label><a *ngIf="address.controls.address.controls.length > 1" (click)="removeNumber(address, j)" style="cursor: default; float: right">X</a><input type="text" class="form-control" placeholder="Enter Number" formControlName="number"></div></div></div></div> -->
+																<div class="row">
+																	<div class="form-group col-md-6">
+																		<label class="col-lg-3 control-label">Street</label>
+																		<input type="text" class="form-control" formControlName="street">
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="form-group col-md-6">
+																			<label class="col-lg-3 control-label">Suite</label>
+																			<input type="text" class="form-control" formControlName="suite">
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="form-group col-md-6">
+																				<label class="col-lg-3 control-label">City</label>
+																				<input class="form-control" type="text" value=""  formControlName ="city">
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="form-group col-md-6">
+																					<label class="col-lg-3 control-label">Zipcode</label>
+																					<input class="form-control" type="text" value=""  formControlName ="zipCode">
+																					</div>
+																				</div>
+																				<div formGroupName="geoLoc">
+																					<div class="row">
+																						<div class="form-group col-md-6">
+																							<label class="col-lg-3 control-label">Longitude</label>
+																							<input class="form-control" type="text" value=""  formControlName ="lat">
+																							</div>
+																						</div>
+																						<div class="row">
+																							<div class="form-group col-md-6">
+																								<label class="col-lg-3 control-label">Longitude</label>
+																								<input class="form-control" type="text" value=""  formControlName ="lng">
+																								</div>
+																							</div>
+																						</div>
+																						<!-- </div> -->
+																					</div>
+																					<!-- Address -->
+																				</div>
+																				<div class="form-group">
+																					<h3>Account Info</h3>
+																					<label class="col-md-3 control-label">Username:</label>
+																					<div class="col-md-8">
+																						<input class="form-control" type="text" value="" formControlName = "userName">
+																						</div>
+																					</div>
+																					<div class="form-group">
+																						<label class="col-md-3 control-label">Password:</label>
+																						<div class="col-md-8">
+																							<input class="form-control" type="password" value="" formControlName = "password">
+																							</div>
+																						</div>
+																						<div class="form-group">
+																							<label class="col-md-3 control-label">Confirm password:</label>
+																							<div class="col-md-8">
+																								<input class="form-control" type="password" value="" formControlName = "password">
+																								</div>
+																							</div>
+																							<div class="form-group">
+																								<label class="col-md-3 control-label">Status:</label>
+																								<div class="col-md-8">
+																									<input class="form-control" type="text" value="" formControlName = "active">
+																									</div>
+																								</div>
+																								<div class="form-group">
+																									<label class="col-md-3 control-label"></label>
+																									<div class="col-md-8">
+																										<input type="submit" class="btn btn-primary" value="Save Changes">
+																											<span></span>
+																											<input type="reset" class="btn btn-default" value="Cancel">
+																											</div>
+																										</div>
+																									</form>
+																								</div>
+																							</div>
+																						</div>
+																						<hr>
+																							<pre>{{usersForm.value | json}}</pre>
