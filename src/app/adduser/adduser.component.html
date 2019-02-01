@@ -1,196 +1,231 @@
-
 <div class="container">
   <h1>Add User</h1>
   <hr>
-
   <div class="row">
-    <!-- left column -->
-    <div class="col-md-3">
-      <div class="text-center">
-        <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        
-        <input type="file" class="form-control">
-      </div>
-    </div>
-    
     <!-- edit form column -->
-    <div class="col-md-9 personal-info">
- 
-        <form [formGroup]="AddUserForm" (ngSubmit)="onSubmit(AddUserForm.value)"  >
-        <div formGroupName="userDetails">
-            <div class="form-group">
-                <h3>Personal info</h3>
-              <label class="col-lg-3 control-label">First name:</label>
-              <div class="col-lg-8">
-                <input class="form-control" type="text"  formControlName="FirstName">
-                <div class="text-danger" *ngIf="FirstName.invalid && (FirstName.dirty || FirstName.touched)">
-                    First Name is required
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-3 control-label">Last name:</label>
-              <div class="col-lg-8">
-                <input class="form-control" type="text"   formControlName="lastName">
-                <div class="text-danger" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                    Last Name is required
-                </div>
-              </div>
-            </div>
-          
-            <div class="form-group">
-              <label class="col-lg-3 control-label">Email:</label>
-              <div class="col-lg-8">
-                <input class="form-control" type="text"   formControlName ="email">
-                <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">Email is required</div>
-                <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">Email must be a valid email address</div>
-              </div>
-            </div>
-    
-            <div class="form-group">
-              <label class="col-lg-3 control-label">Date of Birth:</label>
-              <div class="col-lg-8">
-                <input class="form-control" formControlName="birth" type="date" > 
-                <div class="text-danger" *ngIf="birth.invalid && (birth.dirty || birth.touched)">
-                    Birth Date is required
-                </div>
-              </div>
-            </div>
-    
-            <div class="form-group">
-                <label class="center-block">Gender:</label>
-                <div>
-                    <input type="radio" name="gender" value='Male' formControlName="gender" checked="checked">Male
-                    <input type="radio" name='gender' value='Female' formControlName="gender" >Female
-                
-                </div>
-            </div>  
+    <div class="col-md-12 personal-info">
 
-              
-          
+      <form [formGroup]="AddUserForm"> 
+
+
+        <div formGroupName="userDetails">
+          <div class="form-group">
+            <h3>Personal info</h3>
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && firstName.errors }" value=""/>
+              <div *ngIf="submitted && firstName.errors" class="invalid-feedback">
+                <div *ngIf="firstName.errors.required">First Name is required</div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && lastName.errors }" />
+              <div *ngIf="submitted && lastName.errors" class="invalid-feedback">
+                <div *ngIf="lastName.errors.required">Last Name is required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && email.errors }" />
+              <div *ngIf="submitted && email.errors" class="invalid-feedback">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email must be a valid email address</div>
+              </div>
+            </div>
+            </div>
+
             <div class="form-group">
-                <label class="col-lg-3 control-label">Website</label>
+            <label class="col-lg-3 control-label">Date of Birth:</label>
+            <div class="col-lg-8">
+              <input class="form-control" formControlName="birth" type="date" [ngClass]="{ 'is-invalid': submitted && birth.errors }"/>
+              <div *ngIf="submitted && birth.errors" class="invalid-feedback">
+                  <div *ngIf="birth.errors.required">Birthday is required</div>
+                </div>
+            </div>
+          </div>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Gender</label>
+              <div class="col-lg-8">
+                <input type="radio" value="male" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && gender.errors }" >
+                Male
+                <input type="radio" value="female" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && gender.errors }">
+                Female
+                <div *ngIf="submitted && gender.errors" class="invalid-feedback">
+                  <div *ngIf="gender.errors.required">Gender is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Phone Number</label>
                 <div class="col-lg-8">
-                  <input class="form-control" type="text"   formControlName ="website">
-                  <div class="text-danger" *ngIf="website.invalid && (website.dirty || website.touched)">
-                      This is required
+                  <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && phone.errors }" />
+                  <div *ngIf="submitted && phone.errors" class="invalid-feedback">
+                    <div *ngIf="phone.errors.required">Phone is required</div>
                   </div>
                 </div>
               </div>
-    
-            <!-- Address-->
-            <div formGroupName="address">
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-lg-3 control-label">Street</label>
-                        <input type="text" class="form-control" formControlName="street">
-                        <div class="text-danger" *ngIf="street.invalid && (street.dirty || street.touched)">
-                            This is required
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-lg-3 control-label">Suite</label>
-                        <input type="text" class="form-control" formControlName="suite">
-                        <div class="text-danger" *ngIf="suite.invalid && (suite.dirty || suite.touched)">
-                            This is required
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-lg-3 control-label">City</label>
-                        <input class="form-control" type="text"   formControlName ="city">
-                        <div class="text-danger" *ngIf="city.invalid && (city.dirty || city.touched)">
-                            This is required
-                        </div>
-                    </div>
-                </div>
-    
-                
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-lg-3 control-label">Zipcode</label>
-                        <input class="form-control" type="text"   formControlName ="zipCode">
-                        <div class="text-danger" *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
-                            This is required
-                        </div>
-                    </div>
-                </div>
-    
-                <div formGroupName="geoLoc" >
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-lg-3 control-label">Longitude</label>
-                        <input class="form-control" type="text"   formControlName ="lat">
-                        <div class="text-danger" *ngIf="lat.invalid && (lat.dirty || lat.touched)">
-                            This is required
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-lg-3 control-label">Longitude</label>
-                        <input class="form-control" type="text"   formControlName ="lng">
-                        <div class="text-danger" *ngIf="lng.invalid && (lng.dirty || lng.touched)">
-                            This is required
-                        </div>
-                    </div>
-                </div>
-            </div><!-- geoLoc --> 
-           
-            </div> <!-- Address --> 
-             
-            </div> <!--userDetails -->
 
-           
-        <div class="form-group">
-           
-          <label class="col-md-3 control-label">Username:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="text"  formControlName = "userName">
-            <div class="text-danger" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
-                This is required
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Website</label>
+              <div class="col-lg-8">
+                <input type="text" formControlName="website" class="form-control" [ngClass]="{ 'is-invalid': submitted && website.errors }" />
+                <div *ngIf="submitted && website.errors" class="invalid-feedback">
+                  <div *ngIf="website.errors.required">Website is required</div>
+                </div>
+              </div>
+            </div>
+
+            <!--Address-->
+            <div formGroupName="address">
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Street</label>
+                <div class="col-lg-8">
+                  <input type="text" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && street.errors }" />
+                  <div *ngIf="submitted && street.errors" class="invalid-feedback">
+                    <div *ngIf="street.errors.required">Street is required</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Suite</label>
+                <div class="col-lg-8">
+                  <input type="text" formControlName="suite" class="form-control" [ngClass]="{ 'is-invalid': submitted && suite.errors }" />
+                  <div *ngIf="submitted && suite.errors" class="invalid-feedback">
+                    <div *ngIf="suite.errors.required">Suite is required</div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">City</label>
+                <div class="col-lg-8">
+                  <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && city.errors }" />
+                  <div *ngIf="submitted && city.errors" class="invalid-feedback">
+                    <div *ngIf="city.errors.required">City is required</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Zipcode</label>
+                <div class="col-lg-8">
+                  <input type="text" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && zipCode.errors }" />
+                  <div *ngIf="submitted && zipCode.errors" class="invalid-feedback">
+                    <div *ngIf="zipCode.errors.required">Zipcodeis required</div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div formGroupName="geoLoc">
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Latitude</label>
+                  <div class="col-lg-8">
+                    <input type="text" formControlName="lat" class="form-control" [ngClass]="{ 'is-invalid': submitted && lat.errors }" />
+                    <div *ngIf="submitted && lat.errors" class="invalid-feedback">
+                      <div *ngIf="lat.errors.required">Latitude is required</div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Longitude</label>
+                  <div class="col-md-8">
+                    <input type="text" formControlName="lng" class="form-control" [ngClass]="{ 'is-invalid': submitted && lng.errors }" />
+                    <div *ngIf="submitted && lng.errors" class="invalid-feedback">
+                      <div *ngIf="lng.errors.required">Longitude is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--GeoLoc-->
+
+            </div>
+            <!--Address-->
+
+          </div>
+          <!--UserDetails-->
+
+
+          <div class="form-group">
+            <h3>Account Info</h3>
+            <label class="col-md-3 control-label">Username:</label>
+            <div class="col-md-8">
+              <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && i.userName.errors }" />
+              <div *ngIf="submitted && i.userName.errors" class="invalid-feedback">
+                <div *ngIf="i.userName.errors.required">Username is required</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="password"  formControlName = "password">
-            <div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
-                This is required
+
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && i.password.errors }" />
+              <div *ngIf="submitted && i.password.errors" class="invalid-feedback">
+                <div *ngIf="i.password.errors.required">Password is required</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
-            <input class="form-control" type="password"  formControlName = "Cpassword">
-            <div class="text-danger" *ngIf="Cpassword.invalid && (Cpassword.dirty || Cpassword.touched)">
-                This is required
+
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm Password:</label>
+            <div class="col-md-8">
+              <input type="text" formControlName="cfpassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && i.cfpassword.errors }" />
+              <div *ngIf="submitted && i.cfpassword.errors" class="invalid-feedback">
+                <div *ngIf="i.cfpassword.errors.required">Confirm Password is required</div>
+              </div>
             </div>
           </div>
-        </div>
-       
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
-              <button [disabled]="AddUserForm.invalid" class="btn btn-primary" style="float:right">Submit</button> &nbsp; &nbsp;
-            <span></span>
-            <input type="reset" class="btn btn-default" value="Cancel">
+
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Status:</label>
+            <div class="col-md-8">
+              <input type="text" formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': submitted && i.status.errors }" />
+              <div *ngIf="submitted && i.status.errors" class="invalid-feedback">
+                <div *ngIf="i.status.errors.required">Status is required</div>
+              </div>
+            </div>
           </div>
-        </div>
+
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <button  class="btn btn-primary" (click)="AddUsers()"> Submit </button>
+              <span>&nbsp;</span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
       </form>
     </div>
 
 
-</div>
+  </div>
 
-<hr>
-<pre>{{AddUserForm.value | json}}</pre>
+  <hr>
+  <pre>{{AddUserForm.value | json}}</pre>

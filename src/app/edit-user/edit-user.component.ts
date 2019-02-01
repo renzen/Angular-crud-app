@@ -23,6 +23,7 @@ export class EditUserComponent implements OnInit {
   private FormControl: string;
   usersForm: FormGroup;
   user$: Object;
+  genders = [];
 
   constructor( private service: DataService , private route: ActivatedRoute, private _fb: FormBuilder, private datepipe: DatePipe  ) { 
   this.route.params.subscribe( params => this.id = params.id ); 
@@ -41,11 +42,13 @@ export class EditUserComponent implements OnInit {
         let id = this.route.snapshot.params['id'];
         this.service.getUser(id).subscribe(user => {this.user = user
           this.updateDetails(this.user);
-         // alert(JSON.stringify(user));
-          }); 
-
+         alert(JSON.stringify(user));
+          });   
           
+    // this.usersForm.get('userDetails.gender').patchValue('male');
 }
+
+
 
   initDetails(){
   return this._fb.group({
@@ -80,9 +83,8 @@ export class EditUserComponent implements OnInit {
 removeAddress(i){
 }
 
-
-
-   /*** Update the user */
+   /*** Update the user */ 
+  //  <form [formGroup]="usersForm" (ngSubmit)="updateUser(usersForm.value)" >
   updateUser(user:Users) {
     this.successMessage = '';
     this.errorMessage   = '';
@@ -108,12 +110,15 @@ updateDetails(userdata): void {
     password:userdata.password,
     active:userdata.active,
     birth:userdata.userDetails.birth,
-   // birth: this.datepipe.transform(new Date(userdata.userDetails.birth), 'yyyy-MM-dd'),
+    //birth: this.datepipe.transform(new Date(userdata.userDetails.birth).toLocaleDateString()),
+    gender:userdata.userDetails.gender,
     userDetails: userdata.userDetails
   
     });
 
-    //alert(new Date(userdata.userDetails.birth), 'yyyy-MM-dd');
+    //alert (new Date(userdata.userDetails.birth), 'date:"MM/dd/yyyy');
+
+    alert (new Date(userdata.userDetails.birth).toLocaleDateString()); 
   } 
 
 }

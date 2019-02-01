@@ -22,9 +22,11 @@ const httpOptions = {
 
 export class DataService {
 
-  private BASE_URL = 'http://localhost:5000/';
+  // private BASE_URL = 'http://localhost:5000/';
 
- // BASE_URL = 'http://localhost:5000/';
+  //private BASE_URL = 'https://jsonplaceholder.typicode.com/'
+
+ BASE_URL = 'http://localhost:5000/';
 
 constructor(private http: HttpClient, private messageService: MessageService) { }
 
@@ -39,7 +41,7 @@ getUser(userId): Observable<any>  {
     return this.http.get(this.BASE_URL + 'user/' + userId).pipe(
     tap(_ => this.log(`get user id = ${userId}`)),
     catchError(this.handleError<any>('getUser')));
-    }
+}
 
 updateUser(userId, model:Users): Observable<any>  {
   console.log(JSON.stringify(model));
@@ -50,7 +52,7 @@ updateUser(userId, model:Users): Observable<any>  {
 
 AddUser(model:Users): Observable<any>  {
   console.log('Add user' ,JSON.stringify(model));
-  return this.http.post(this.BASE_URL + 'User', model).pipe(
+  return this.http.post(this.BASE_URL + 'Users', model).pipe(
   tap(_ => this.log('add users')),
   catchError(this.handleError<any>('add Users')));
   }

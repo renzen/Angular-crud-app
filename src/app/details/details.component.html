@@ -23,7 +23,7 @@
       <td>{{ user$.userDetails.lastName }} </td>
       <td>{{ user$.userDetails.email }}  </td>
       <td>{{ user$.userDetails.gender }}</td>
-      <td>{{ user$.userDetails.birth | date:"MM/dd/yy" }}</td>
+      <td>{{ user$.userDetails.birth | date:"MM/dd/yyyy" }}</td>
       <td>{{ user$.userDetails.address.street }} {{ user$.userDetails.address.suite }} {{ user$.userDetails.address.city }} {{ user$.userDetails.address.zipCode }} </td>
       <td>{{ user$.userDetails.website }}</td>
       <td>Lat: {{ user$.userDetails.address.geoLoc.lat }} <br/> Long: {{ user$.userDetails.address.geoLoc.lng }}</td>
